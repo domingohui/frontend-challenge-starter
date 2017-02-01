@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HelloWorld from './components/HelloWorld';
+import VisibleHackerList from './components/VisibleHackerList';
 import './App.css';
 import logoSvg from './assets/logo.svg'
 
@@ -14,7 +14,7 @@ class App extends Component {
           <h1>Hack the North Frontend Challenge</h1>
         </header>
         <section>
-          <HelloWorld />
+          <VisibleHackerList />
         </section>
       </div>
     );

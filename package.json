@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.8.5"
+    "jquery": "^3.1.1",
+    "react-redux": "^5.0.2",
+    "react-scripts": "0.8.5",
+    "redux": "^3.6.0"
   },
   "dependencies": {
     "react": "^15.4.2",
@@ -11,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --watch",
     "eject": "react-scripts eject"
   }
 }
