@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import HackerList from './HackerList';
+import {accept, reject} from './actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,7 +9,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        onClickAccept: (id) => {
+            dispatch( accept(id) )
+        },
+        onClickReject: (id) => {
+            dispatch( reject(id) )
+        }
+    };
 };
 
 const VisibleHackerList = connect (

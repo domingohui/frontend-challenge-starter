@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import {ACCEPTED, REJECTED} from './status';
-import {ACCEPT, REJECT} from './actionTypes';
+import {UNDER_REVIEW, ACCEPTED, REJECTED} from './status';
+import {CLICK_ACCEPT, CLICK_REJECT} from './actionTypes';
 
 function hackers (state = [], action) {
     let updated_status = '';
     switch (action.type) {
-        case ACCEPT:
+        case CLICK_ACCEPT:
             updated_status = ACCEPTED;
             break;
-        case REJECT:
+        case CLICK_REJECT:
             updated_status = REJECTED;
             break;
         default:
@@ -16,9 +16,18 @@ function hackers (state = [], action) {
     }
 
     return state.map ( (hacker, index) => {
-        if ( hacker.key === action.index ) {
+        if ( index === action.id ) {
+            let new_status = hacker.status;
+            if ( updated_status !== '' ) {
+                // Check if same button toggled. if yes, under review again 
+                if ( updated_status === hacker.status ) {
+                    new_status = UNDER_REVIEW;
+                }
+                else
+                    new_status = updated_status;
+            }
             return Object.assign( {}, hacker, {
-                "status": updated_status
+                "status": new_status
             })
         }
         return hacker;
