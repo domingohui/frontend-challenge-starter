@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import VisibleHackerList from './components/VisibleHackerList';
-import SearchBar from './components/SearchBar';
-//require('css-loader!./App.css');
-import logoSvg from './assets/logo.svg'
-require ('../node_modules/materialize-css/sass/materialize.scss');
+import VisibleHackerList from './VisibleHackerList';
+import SearchBar from './SearchBar';
+import styles from 'css-loader!../assets/App.css';
+import logoSvg from '../assets/logo.svg'
+require ('../../node_modules/materialize-css/sass/materialize.scss');
 
 class App extends Component {
   render() {

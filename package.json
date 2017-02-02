@@ -21,6 +21,6 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack --watch --display-error-details",
-    "run": "FLASK_APP=server.py flask run"
+    "start": "FLASK_APP=server.py flask run"
   }
 }
