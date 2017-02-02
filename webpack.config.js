@@ -47,5 +47,5 @@ module.exports=
         ],
         resolve: {
             extensions: [".css", ".js", ".jsx"]
-        }
+        } 
     };

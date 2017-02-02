@@ -22,6 +22,7 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack --watch --display-error-details",
+    "build-debug": "./node_modules/.bin/webpack --watch --devtool source-map --display-error-details",
     "start": "FLASK_APP=server.py flask run"
   }
 }
