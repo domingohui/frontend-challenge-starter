@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VisibleHackerList from './VisibleHackerList';
 import SearchBar from './SearchBar';
-import styles from 'css-loader!../assets/App.css';
+import styles from '../assets/App.css';
 import logoSvg from '../assets/logo.svg'
 require ('../../node_modules/materialize-css/sass/materialize.scss');
 
