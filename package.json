@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+<<<<<<< HEAD
     "css-loader": "^0.26.1",
     "jquery": "^3.1.1",
     "materialize-css": "^0.98.0",
@@ -14,13 +15,26 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0"
+=======
+    "jquery": "^3.1.1",
+    "react-materialize": "^0.18.1",
+    "react-redux": "^5.0.2",
+    "react-scripts": "0.8.5",
+    "redux": "^3.6.0"
+>>>>>>> 4e6cbbdf59f660891d38bcccf86c82c3ef23a4c1
   },
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "scripts": {
+<<<<<<< HEAD
     "build": "./node_modules/.bin/webpack --watch --display-error-details",
     "run": "FLASK_APP=server.py flask run"
+=======
+    "start": "react-scripts start",
+    "build": "react-scripts build --watch",
+    "eject": "react-scripts eject"
+>>>>>>> 4e6cbbdf59f660891d38bcccf86c82c3ef23a4c1
   }
 }
