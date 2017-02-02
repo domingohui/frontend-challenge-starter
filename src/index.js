@@ -7,8 +7,10 @@ import HackerApp from './components/reducers';
 import $ from 'jquery';
 
 $.get('https://hackthenorth.com/fe-users.json', function (data) {
-    console.log(data);
-    let store = createStore ( HackerApp, { "hackers": data } );
+    let store = createStore ( HackerApp, { 
+        "hackers": data,
+        "search_filter": 'Search here'
+    } );
     ReactDOM.render(
         <Provider store={store}>
             <App />

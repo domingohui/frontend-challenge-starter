@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {UNDER_REVIEW, ACCEPTED, REJECTED} from './status';
-import {CLICK_ACCEPT, CLICK_REJECT} from './actionTypes';
+import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER} from './actions';
 
 function hackers (state = [], action) {
     let updated_status = '';
@@ -34,9 +34,17 @@ function hackers (state = [], action) {
     });
 }
 
+function search_filter ( state='', action ) {
+    if ( action.type === UPDATE_SEARCH_FILTER ) {
+        return action.value;
+    }
+    else
+        return state;
+}
 
 const HackerApp = combineReducers ({
     hackers,
+    search_filter
 });
 
 export default HackerApp;

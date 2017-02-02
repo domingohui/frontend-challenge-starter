@@ -1,10 +1,54 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateSearchFilter } from './actions';
 
-const SearchBar = () => (
-    <div className='search-wrapper card'>
-        <input />
-        <div className='search-results'></div>
-    </div>
-);
+class Search extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = { 
+            value: props.inputValue
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.onChangeUpdateSearchText = props.onKeyPress.bind(this);
+    }
+
+    handleChange (event) {
+        let current_value = event.target.value;
+        this.setState({value: current_value});
+        this.onChangeUpdateSearchText(current_value);
+    }
+
+    render () {
+        return (
+            <div className='search-wrapper card'>
+                <input 
+                    type='text' 
+                    value={this.state.value} 
+                    onChange={this.handleChange}
+                    />
+                <div className='search-results'></div>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        inputValue: state.search_filter
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onKeyPress: (value) => {
+            dispatch (updateSearchFilter(value));
+        }
+    };
+};
+
+const SearchBar = connect (
+    mapStateToProps,
+    mapDispatchToProps
+)(Search);
 
 export default SearchBar;
