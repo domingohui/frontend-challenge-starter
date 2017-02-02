@@ -1,0 +1,26 @@
+{
+  "name": "frontend-challenge-starter",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.98.0",
+    "node-sass": "^4.5.0",
+    "react-materialize": "^0.18.1",
+    "react-redux": "^5.0.2",
+    "react-scripts": "0.8.5",
+    "redux": "^3.6.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.1.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --watch --display-error-details",
+    "run": "FLASK_APP=server.py flask run"
+  }
+}
