@@ -14,6 +14,11 @@ const HackerList = ( { hackers, onClickAccept, onClickReject} ) => (
                     key={index}
                 />
             )}
+            { (hackers.length === 0) &&
+                    <tr>
+                        No results. Try removing filters.
+                    </tr>
+            }
         </tbody>
     </table>
 );
