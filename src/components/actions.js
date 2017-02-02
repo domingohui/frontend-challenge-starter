@@ -1,5 +1,6 @@
 // Action creators
-import {CLICK_ACCEPT, CLICK_REJECT} from './actionTypes';
+export const CLICK_ACCEPT = 'CLICK_ACCEPT';
+export const CLICK_REJECT = 'CLICK_REJECT';
 
 export const accept = (id) => {
     return {
