@@ -9,7 +9,7 @@ import $ from 'jquery';
 $.get('https://hackthenorth.com/fe-users.json', function (data) {
     let store = createStore ( HackerApp, { 
         "hackers": data,
-        "search_filter": 'Search here'
+        "searchFilter": ''
     } );
     ReactDOM.render(
         <Provider store={store}>

@@ -3,7 +3,7 @@ import HackerList from './HackerList';
 import {accept, reject} from './actions';
 
 const mapStateToProps = (state) => {
-    let textFilter = state.search_filter;
+    let textFilter = state.searchFilter;
 
     return {
         hackers: state.hackers.filter( (hacker) => {
