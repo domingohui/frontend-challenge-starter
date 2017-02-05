@@ -2,22 +2,22 @@
 
 ## Setup
 
-#### Clone this repo (DO NOT FORK!):
-
-```
-git clone git@github.com:hackthenorth/frontend-challenge-starter.git
-```
-
 ### Install dependences:
 
 ```
 npm install
 ```
 
+### To Run:
+
+```
+npm run start
+```
+
 ### Run development mode:
 
 ```
-npm start
+npm run build-debug
 ```
 
 Your app will be running at [http://localhost:3000/](http://localhost:3000/)
