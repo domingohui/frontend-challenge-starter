@@ -6,7 +6,7 @@ class Search extends React.Component {
     constructor (props) {
         super(props);
         this.state = { 
-            value: props.inputValue
+            value: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.onChangeUpdateSearchText = props.onKeyPress.bind(this);
@@ -20,13 +20,12 @@ class Search extends React.Component {
 
     render () {
         return (
-            <div className='search-wrapper card'>
+            <div >
                 <input 
                     type='text' 
                     value={this.state.value} 
                     onChange={this.handleChange}
                     />
-                <div className='search-results'></div>
             </div>
         );
     }

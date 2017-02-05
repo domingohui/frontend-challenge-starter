@@ -5,10 +5,9 @@ import {Button, Icon} from 'react-materialize';
 const HackerList = ( { hackers, onClickAccept, onClickReject} ) => (
     <table className='bordered'>
         <tbody>
-            {hackers.map ( (hacker,index) => 
+            {hackers.map ( (hacker, index) => 
                 <Hacker 
                     details={hacker} 
-                    id={index}
                     onClickAccept={onClickAccept}
                     onClickReject={onClickReject}
                     key={index}
@@ -16,7 +15,9 @@ const HackerList = ( { hackers, onClickAccept, onClickReject} ) => (
             )}
             { (hackers.length === 0) &&
                     <tr>
-                        No results. Try removing filters.
+                        <th>
+                            No results. Try removing filters.
+                        </th>
                     </tr>
             }
         </tbody>

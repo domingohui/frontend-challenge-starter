@@ -3,34 +3,46 @@ import VisibleHackerList from './VisibleHackerList';
 import SearchBar from './SearchBar';
 import styles from '../assets/App.css';
 import logoSvg from '../assets/logo.svg'
-import Filters from './Filters';
+import VisibleFilters from './VisibleFilters';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
+import {fetchHackers} from './actions';
+import {connect} from 'react-redux';
 
 /*
  * state: {
  *     hackers: [
+ *         {
+ *             name: '...',
+ *             ...,
+ *             ...,
+ *             id: 1
+ *         },
  *         ...
  *     ],
  *
  *     searchFilter: '',
  *
- *     availableFilters: [
- *         '...',
- *         '...',
- *     ],
- *
- *     selectedFilters: [
- *         '...',
- *         '...',
- *     ],
- *
- *     customizedFilters: [
- *         '...',
- *         '...',
+ *     filters: [
+ *         {
+ *             value: '...',
+ *             type: 'status',
+ *             selected: true,
+ *             id: 1
+ *         },
+ *         ...
  *     ]
  * }
-*/
+ */
 class App extends Component {
+
+    constructor( props ) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
+    }
+
     render() {
         return (
             <div>
@@ -42,7 +54,7 @@ class App extends Component {
                 </header>
                 <section>
                     <SearchBar />
-                    <Filters />
+                    <VisibleFilters />
                     <VisibleHackerList />
                 </section>
             </div>
@@ -50,4 +62,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect()(App);
