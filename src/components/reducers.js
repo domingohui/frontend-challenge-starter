@@ -107,6 +107,7 @@ const HackerApp = combineReducers ({
     hackers,
     searchFilter,
     filters,
+    loading,
 });
 
 export default HackerApp;

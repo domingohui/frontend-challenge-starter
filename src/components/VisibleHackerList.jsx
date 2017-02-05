@@ -8,15 +8,22 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
     if ( !hasFilters && searchForAnyCategory === '' )
         return true;
 
-    // Check each category 
-    let categoryMatch = Object.keys(filtersByCategories).reduce( (result, category) => {
-        return result || searchFor( hacker, category );
+    let categoryMatch = filtersByCategories.reduce( (result, filter) => {
+        return result || hacker[filter.type].includes(filter.value);
     }, false);
 
-    if (categoryMatch)
+    if ( categoryMatch )
         return true;
 
-    let anyCategoryMatch = (searchForAnyCategory === '' || containInAnyCategory ( hacker, searchForAnyCategory ) );
+    let anyCategoryMatch = (searchForAnyCategory === '' ||
+        hacker.name.includes(filter.value) ||
+        hacker.email.includes(filter.value) ||
+        hacker.skills.reduce( (result, skill) => {
+            return result || skill.skill.include(searchForAnyCategory);
+        }) ||
+        hacker.company.includes(filter.value) || 
+        hacker.status.includes (filter.value)
+    );
 
     return anyCategoryMatch;
 }
@@ -29,9 +36,9 @@ const mapStateToProps = (state) => {
 
     return {
         hackers: state.hackers.filter( (hacker) => {
-            return true;
             return searchWrapper(hacker, selectedFilters, state.searchFilter);
-        })
+        }),
+        loading: state.loading
     }
 };
 

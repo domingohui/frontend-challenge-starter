@@ -8,7 +8,9 @@ const FilterTag = ( {filterThis, filterId, toggleThisFilter, removeThisFilter, s
         style={{display: 'inline'}}
     >
         {filterThis}
+        { removeThisFilter &&
         <input type='button' onClick={()=>removeThisFilter(filterId)} style={{color: 'red', display: 'inline'}} value='x' />
+        }
     </div>
 )
 

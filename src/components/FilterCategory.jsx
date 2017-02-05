@@ -12,7 +12,7 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter} ) {
                         toggleThisFilter={toggleFilter}
                         removeThisFilter={removeFilter}
                         selected={filter.selected}
-                        className={'col s1'}
+                        className={'col l1'}
                         key={index}
                     />
             ))};

@@ -2,7 +2,7 @@ import React from 'react';
 import Hacker from './Hacker';
 import {Button, Icon} from 'react-materialize';
 
-const HackerList = ( { hackers, onClickAccept, onClickReject} ) => (
+const HackerList = ( { hackers, loading, onClickAccept, onClickReject} ) => (
     <table className='bordered'>
         <tbody>
             {hackers.map ( (hacker, index) => 
@@ -13,13 +13,18 @@ const HackerList = ( { hackers, onClickAccept, onClickReject} ) => (
                     key={index}
                 />
             )}
-            { (hackers.length === 0) &&
-                    <tr>
+            <tr>
+                { (hackers.length === 0) &&
                         <th>
                             No results. Try removing filters.
                         </th>
-                    </tr>
-            }
+                }
+                { loading &&
+                        <th>
+                            Loading...
+                        </th>
+                }
+            </tr>
         </tbody>
     </table>
 );
