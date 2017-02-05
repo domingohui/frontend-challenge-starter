@@ -26,19 +26,23 @@ const Hacker = ( {details, onClickAccept, onClickReject} ) => (
         {details.status === UNDER_REVIEW && <td><UnderReviewStatus /></td>}
 
         <td>{details.name}</td>
+            <td>
         {
+            // Skill tags
             details.skills.map( (skill, index) => {
                 return ( 
-                    <td key={index}><FilterTag 
+                    <FilterTag 
                         filterThis = {skill.skill}
                         filterId={0}
                         toggleThisFilter={()=>{}}
                         removeThisFilter={undefined}
                         selected={true}
-                    /></td>
+                        key={index}
+                    />
                 )
             })
         }
+        </td>
         <td><Button className={(details.status===ACCEPTED)? 'grey' : ''} waves='light' onClick={()=>onClickAccept(details.id)}>Accept</Button></td>
         <td><Button className={(details.status===REJECTED)? 'grey' : 'red'} waves='light' onClick={()=>onClickReject(details.id)}>Reject</Button></td>
     </tr>
