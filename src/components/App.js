@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import styles from '../assets/App.css';
 import logoSvg from '../assets/logo.svg'
 import VisibleFilters from './VisibleFilters';
+import Error from './Error';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
 import {fetchHackers} from './actions';
 import {connect} from 'react-redux';
@@ -40,7 +41,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
+        //this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
+        // when starbucks wifi isn't working :(
+        this.props.dispatch(fetchHackers('static/fe-users.json'));
     }
 
     render() {
@@ -55,6 +58,7 @@ class App extends Component {
                 <section>
                     <SearchBar />
                     <VisibleFilters />
+                    <Error />
                     <VisibleHackerList />
                 </section>
             </div>

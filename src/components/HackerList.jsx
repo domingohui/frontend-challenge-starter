@@ -2,9 +2,18 @@ import React from 'react';
 import Hacker from './Hacker';
 import {Button, Icon} from 'react-materialize';
 
-const HackerList = ( { hackers, loading, onClickAccept, onClickReject} ) => (
+const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAccept, onClickReject} ) => (
     <table className='bordered'>
         <tbody>
+            <tr>
+                <th>
+                    { 
+                        ((hackers.length === totalCountHackersUnfiltered)? 
+                            'All' : hackers.length + ' of ' + totalCountHackersUnfiltered) 
+                            + ' selected'
+                    }
+                </th>
+            </tr>
             {hackers.map ( (hacker, index) => 
                 <Hacker 
                     details={hacker} 

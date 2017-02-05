@@ -8,24 +8,24 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
     if ( !hasFilters && searchForAnyCategory === '' )
         return true;
 
-    let categoryMatch = filtersByCategories.reduce( (result, filter) => {
+    let searchForAnyCategoryLowerCase = searchForAnyCategory.toLowerCase();
+
+    let anyCategoryMatch = (searchForAnyCategoryLowerCase === '' ||
+        hacker.name.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
+        hacker.email.includes(searchForAnyCategoryLowerCase) ||
+        hacker.skills.reduce( (result, skill) => {
+            return result || skill.skill.include(searchForAnyCategoryLowerCase);
+        }) ||
+        hacker.company.includes(searchForAnyCategoryLowerCase) || 
+        hacker.status.includes (searchForAnyCategoryLowerCase)
+    );
+
+    // Then check each category filters
+    let categoryMatch = !hasFilters || filtersByCategories.reduce( (result, filter) => {
         return result || hacker[filter.type].includes(filter.value);
     }, false);
 
-    if ( categoryMatch )
-        return true;
-
-    let anyCategoryMatch = (searchForAnyCategory === '' ||
-        hacker.name.includes(filter.value) ||
-        hacker.email.includes(filter.value) ||
-        hacker.skills.reduce( (result, skill) => {
-            return result || skill.skill.include(searchForAnyCategory);
-        }) ||
-        hacker.company.includes(filter.value) || 
-        hacker.status.includes (filter.value)
-    );
-
-    return anyCategoryMatch;
+    return anyCategoryMatch && categoryMatch;
 }
 
 const mapStateToProps = (state) => {
@@ -38,7 +38,8 @@ const mapStateToProps = (state) => {
         hackers: state.hackers.filter( (hacker) => {
             return searchWrapper(hacker, selectedFilters, state.searchFilter);
         }),
-        loading: state.loading
+        loading: state.loading,
+        totalCountHackersUnfiltered: state.hackers.length,
     }
 };
 

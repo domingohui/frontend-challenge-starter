@@ -9,6 +9,20 @@ import $ from 'jquery';
 
 // Give each hacker an id
 let store = createStore ( HackerApp, 
+    {
+        hackers: [],
+        searchFilter: '',
+        filters: [
+            {
+                value: 'h',
+                index: -1,
+                type: 'name',
+                selected: true
+            }
+        ],
+        loading: true
+
+    },
     applyMiddleware(
         thunk,
     )

@@ -1,3 +1,3 @@
-export const ACCEPTED = 'ACCEPTED';
+export const ACCEPTED = 'Accepted';
 export const UNDER_REVIEW = 'in_review';
-export const REJECTED = 'REJECTED';
+export const REJECTED = 'Rejected';

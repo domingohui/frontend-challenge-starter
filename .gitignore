@@ -9,6 +9,9 @@ coverage
 # production
 static/build
 
+# json
+static/fe-users.json
+
 # misc
 .DS_Store
 .env

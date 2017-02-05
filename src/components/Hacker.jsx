@@ -1,12 +1,31 @@
 import React from 'react';
-import {ACCEPTED, REJECTED} from './status';
+import {ACCEPTED, REJECTED, UNDER_REVIEW} from './status';
 import {Button, Icon} from 'react-materialize';
 import FilterTag from './FilterTag';
 
+function StatusBar (props) {
+    return (<h4 style={{'color': props.color}}>&#9673;</h4>);
+};
+
+function AcceptedStatus () {
+    return ( <StatusBar color={'green'} /> );
+}
+
+function RejectedStatus () {
+    return ( <StatusBar color={'red'} /> );
+}
+
+function UnderReviewStatus () {
+    return ( <StatusBar color={'yellow'} /> );
+}
+
 const Hacker = ( {details, onClickAccept, onClickReject} ) => (
     <tr>
+        {details.status === ACCEPTED && <td><AcceptedStatus /></td>}
+        {details.status === REJECTED && <td><RejectedStatus /></td>}
+        {details.status === UNDER_REVIEW && <td><UnderReviewStatus /></td>}
+
         <td>{details.name}</td>
-        <td>{details.status}</td>
         {
             details.skills.map( (skill, index) => {
                 return ( 

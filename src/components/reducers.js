@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 import {UNDER_REVIEW, ACCEPTED, REJECTED} from './status';
 // action types
-import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA} from './actions';
+import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA, ERROR_FETCHING_DATA} from './actions';
 
 function hackers (hackers = [], action) {
     // Fresh data, override old data. Can be called at initial state too
     if ( action.type === DID_FETCH_DATA ) {
         return action.data.map( (hacker, index) => {
+            // assign id to each applicant
             return Object.assign( {}, hacker, {
                 id: index
             });
@@ -14,7 +15,7 @@ function hackers (hackers = [], action) {
     }
 
     // Initial state
-    if ( typeof hacker === 'undefined' ) {
+    if ( !hackers ) {
         console.log("returning initial state: hackers");
         return [];
     }
@@ -91,6 +92,7 @@ function filters ( filters = [], action ) {
 
 
 function loading ( state, action ) {
+    // initial state
     if ( typeof state === 'undefined' )
         return true;
 
@@ -103,11 +105,29 @@ function loading ( state, action ) {
     return state;
 }
 
+function error ( state, action ) {
+    // initial state
+    if ( typeof state === 'undefined' )
+        return '';
+    
+    // has error
+    if ( action.type === ERROR_FETCHING_DATA ) {
+        return action.error;
+    }
+    return state;
+}
+
 const HackerApp = combineReducers ({
     hackers,
     searchFilter,
     filters,
     loading,
+    error,
 });
 
 export default HackerApp;
+
+
+
+// WEBPACK FOOTER //
+// ./src/components/reducers.js
