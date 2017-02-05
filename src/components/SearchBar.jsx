@@ -37,6 +37,7 @@ class Search extends React.Component {
             <div >
                 <input 
                     type='text' 
+                    placeholder={'OmniSearchBar for names, emails, companies, skills, and statuses!'}
                     value={this.state.value} 
                     onChange={this.handleChange}
                     />

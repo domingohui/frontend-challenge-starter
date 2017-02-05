@@ -12,17 +12,17 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
 
     let anyCategoryMatch = (searchForAnyCategoryLowerCase === '' ||
         hacker.name.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
-        hacker.email.includes(searchForAnyCategoryLowerCase) ||
+        hacker.email.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
         hacker.skills.reduce( (result, skill) => {
-            return result || skill.skill.includes(searchForAnyCategoryLowerCase);
+            return result || skill.skill.toLowerCase().includes(searchForAnyCategoryLowerCase);
         }, false) ||
-        hacker.company.includes(searchForAnyCategoryLowerCase) || 
-        hacker.status.includes (searchForAnyCategoryLowerCase)
+        hacker.company.toLowerCase().includes(searchForAnyCategoryLowerCase) || 
+        hacker.status.toLowerCase().includes (searchForAnyCategoryLowerCase)
     );
 
     // Then check each category filters
     let categoryMatch = !hasFilters || filtersByCategories.reduce( (result, filter) => {
-        return result || hacker[filter.type].includes(filter.value);
+        return result || hacker[filter.type].toLowerCase().includes(filter.value.toLowerCase());
     }, false);
 
     return anyCategoryMatch && categoryMatch;
