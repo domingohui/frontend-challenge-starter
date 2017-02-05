@@ -20,7 +20,7 @@ npm run start
 npm run build-debug
 ```
 
-Your app will be running at [http://localhost:3000/](http://localhost:3000/)
+Your app will be running at [http://localhost:3000/](http://localhost:5000/)
 
 ## Support
 If you have any questions, or problems setting this up, send an email to [moaaz@hackthenorth.com](moaaz@hackthenorth.com)
