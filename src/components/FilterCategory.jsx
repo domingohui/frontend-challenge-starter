@@ -11,8 +11,7 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter} ) {
                         filterId={filter.id}
                         toggleThisFilter={toggleFilter}
                         removeThisFilter={removeFilter}
-                        selected={filter.selected}
-                        className={'col l1'}
+                        className={'col l1 ' + (filter.selected? 'blue' : 'grey')}
                         key={index}
                     />
             ))};

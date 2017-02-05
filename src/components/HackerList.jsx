@@ -14,6 +14,13 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
                     }
                 </th>
             </tr>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Skills (darker=stronger)</th>
+                <th></th>
+                <th></th>
+            </tr>
             {hackers.map ( (hacker, index) => 
                 <Hacker 
                     details={hacker} 

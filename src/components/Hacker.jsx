@@ -37,6 +37,7 @@ const Hacker = ( {details, onClickAccept, onClickReject} ) => (
                         toggleThisFilter={()=>{}}
                         removeThisFilter={undefined}
                         selected={true}
+                        backgroundColor={'rgb(66,' + parseInt(225-skill.rating*23) + ',' + parseInt(155-skill.rating*15) + ')'}
                         key={index}
                     />
                 )
