@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateSearchFilter } from './actions';
 
+'use strict';
+
 class Search extends React.Component {
     constructor (props) {
         super(props);
@@ -10,12 +12,24 @@ class Search extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.onChangeUpdateSearchText = props.onKeyPress.bind(this);
+        this.milliSecSinceLastChange = 0;
+        this.CHECK_UPDATE_INTERVAL = 200;
+    }
+
+    componentDidMount () {
+        setInterval ( this.updateTimer.bind(this), this.CHECK_UPDATE_INTERVAL );
     }
 
     handleChange (event) {
-        let current_value = event.target.value;
-        this.setState({value: current_value});
-        this.onChangeUpdateSearchText(current_value);
+        this.setState({value: event.target.value});
+        this.milliSecSinceLastChange = 0;
+    }
+
+    updateTimer () {
+        this.milliSecSinceLastChange += this.CHECK_UPDATE_INTERVAL;
+        if ( this.milliSecSinceLastChange >= 400 ) {
+            this.onChangeUpdateSearchText(this.state.value);
+        }
     }
 
     render () {
