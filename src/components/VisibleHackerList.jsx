@@ -14,8 +14,8 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
         hacker.name.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
         hacker.email.includes(searchForAnyCategoryLowerCase) ||
         hacker.skills.reduce( (result, skill) => {
-            return result || skill.skill.include(searchForAnyCategoryLowerCase);
-        }) ||
+            return result || skill.skill.includes(searchForAnyCategoryLowerCase);
+        }, false) ||
         hacker.company.includes(searchForAnyCategoryLowerCase) || 
         hacker.status.includes (searchForAnyCategoryLowerCase)
     );
