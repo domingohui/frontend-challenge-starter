@@ -15,8 +15,7 @@ const Hacker = ( {details, onClickAccept, onClickReject} ) => (
                         filterId={0}
                         toggleThisFilter={()=>{}}
                         removeThisFilter={undefined}
-                        selected={false}
-                        className={' green'}
+                        selected={true}
                     /></td>
                 )
             })
