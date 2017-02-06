@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import {UNDER_REVIEW, ACCEPTED, REJECTED} from './status';
 // action types
-import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA, ERROR_FETCHING_DATA} from './actions';
+import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA, ERROR_FETCHING_DATA, UNDO} from './actions';
 
-function hackers (hackers = [], action) {
+function hackersReducer (hackers = [], action) {
     // Fresh data, override old data. Can be called at initial state too
     if ( action.type === DID_FETCH_DATA ) {
         return action.data.map( (hacker, index) => {
@@ -51,7 +51,7 @@ function hackers (hackers = [], action) {
     });
 }
 
-function searchFilter ( state='', action ) {
+function searchFilterReducer ( state='', action ) {
     // Initial state
     if ( typeof state === 'undefined' )
         return '';
@@ -62,7 +62,7 @@ function searchFilter ( state='', action ) {
         return state;
 }
 
-function filters ( filters = [], action ) {
+function filtersReducer ( filters = [], action ) {
     // Initial state
     if ( typeof filters === 'undefined' )
         return [];
@@ -91,7 +91,7 @@ function filters ( filters = [], action ) {
 }
 
 
-function loading ( state, action ) {
+function loadingReducer ( state, action ) {
     // initial state
     if ( typeof state === 'undefined' )
         return true;
@@ -105,7 +105,7 @@ function loading ( state, action ) {
     return state;
 }
 
-function error ( state, action ) {
+function errorReducer ( state, action ) {
     // initial state
     if ( typeof state === 'undefined' )
         return '';
@@ -117,17 +117,25 @@ function error ( state, action ) {
     return state;
 }
 
-const HackerApp = combineReducers ({
-    hackers,
-    searchFilter,
-    filters,
-    loading,
-    error,
-});
+function HackerApp (state = {}, action ) {
+    if ( action.type === UNDO  ) {
+        console.log('undo hit');
+        if ( state.previousStates.length > 0 ) {
+            console.log("popping state");
+            return state.previousStates.pop();
+        }
+        else 
+            return state;
+    }
+
+    let hackers = hackersReducer( state.hackers, action );
+    let searchFilter = searchFilterReducer ( state.searchFilter, action );
+    let filters = filtersReducer ( state.filters, action );
+    let loading = loadingReducer ( state.loading, action );
+    let error = errorReducer ( state.error, action );
+    let previousStates = (state.previousStates || []).concat( state );
+
+    return { hackers, searchFilter, filters, loading, error, previousStates };
+}
 
 export default HackerApp;
-
-
-
-// WEBPACK FOOTER //
-// ./src/components/reducers.js

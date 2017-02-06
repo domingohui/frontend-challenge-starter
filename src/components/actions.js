@@ -10,6 +10,7 @@ export const REMOVE_FILTER = 'REMOVE_FILTER';
 export const IS_FETCHING_DATA = 'IS_FETCHING_DATA';
 export const DID_FETCH_DATA = 'DID_FETCH_DATA';
 export const ERROR_FETCHING_DATA = 'ERROR_FETCHING_DATA';
+export const UNDO = 'UNDO';
 
 
 // Action creators
@@ -45,6 +46,12 @@ export const removeFilter = (filterId) => {
     return {
         type: REMOVE_FILTER,
         filterId: filterId
+    };
+}
+
+export const undo = () => {
+    return {
+        type: UNDO
     };
 }
 

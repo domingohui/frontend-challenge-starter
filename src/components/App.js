@@ -5,6 +5,7 @@ import styles from '../assets/App.css';
 import logoSvg from '../assets/logo.svg'
 import VisibleFilters from './VisibleFilters';
 import Error from './Error';
+import Undo from './Undo';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
 import {fetchHackers} from './actions';
 import {connect} from 'react-redux';
@@ -58,6 +59,7 @@ class App extends Component {
                 <section>
                     <SearchBar />
                     <VisibleFilters />
+                    <Undo />
                     <Error />
                     <VisibleHackerList />
                 </section>
