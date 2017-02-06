@@ -64,8 +64,9 @@ function searchFilterReducer ( state='', action ) {
 
 function filtersReducer ( filters = [], action ) {
     // Initial state
-    if ( typeof filters === 'undefined' )
+    if ( typeof filters === 'undefined' ) {
         return [];
+    }
 
     if ( action.type === TOGGLE_FILTER ) {
         // duplicate the filters

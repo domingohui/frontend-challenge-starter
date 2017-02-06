@@ -17,18 +17,21 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
                         key={index}
                     />
             ))};
-            <form onSubmit={(e)=>{
-                e.preventDefault();
-                if ( newFilterInput.value !== '' ) {
-                    addFilter( category, newFilterInput.value);
-                    newFilterInput.value = '';
-                }
-            }}>
-            
+            <form 
+                onSubmit={ e =>{
+                    e.preventDefault();
+                    if ( newFilterInput.value !== '' ) {
+                        addFilter( category, newFilterInput.value);
+                        newFilterInput.value = '';
+                    }
+                }}
+                style={{display: 'inline'}} >
+
                 <input 
                     className='col l1' 
                     placeholder='add filter' 
                     ref={(input) =>{ newFilterInput = input}}
+                    style={{display: 'inline'}}
                 />
             </form>
 

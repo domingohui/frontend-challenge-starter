@@ -7,7 +7,7 @@ import VisibleFilters from './VisibleFilters';
 import Error from './Error';
 import Undo from './Undo';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
-import {fetchHackers} from './actions';
+import {fetchHackers, addFilter} from './actions';
 import {connect} from 'react-redux';
 
 /*
@@ -41,10 +41,23 @@ class App extends Component {
         super(props);
     }
 
+    getDefaultStatusFiltersAddActions () {
+        // Generate actions to add default statuses
+        let status = [ 'Accepted', 'Rejected', 'Review' ];
+
+        return status.map( (status) => {
+            return addFilter( 'status', status );
+        });
+    }
+
     componentDidMount() {
-        //this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
+        this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
+        // Add default filters
+        this.getDefaultStatusFiltersAddActions().map( (addFilterAction) => {
+            this.props.dispatch( addFilterAction );
+        })
         // when starbucks wifi isn't working :(
-        this.props.dispatch(fetchHackers('static/fe-users.json'));
+        //this.props.dispatch(fetchHackers('static/fe-users.json'));
     }
 
     render() {
