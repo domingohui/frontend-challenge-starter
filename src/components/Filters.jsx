@@ -2,7 +2,7 @@ import FilterTag from './FilterTag';
 import FilterCategory from './FilterCategory';
 import React from 'react';
 
-function Filters ( {available, toggleFilter, removeFilter} ) {
+function Filters ( {available, toggleFilter, removeFilter, addFilter} ) {
     let filtersByCategory = available.reduce( (byCategory, filter) => {
         return Object.assign(
             {}, byCategory, 
@@ -30,6 +30,7 @@ function Filters ( {available, toggleFilter, removeFilter} ) {
                         filters={filtersByCategory[category]} 
                         toggleFilter={toggleFilter}
                         removeFilter={removeFilter}
+                        addFilter={addFilter}
                         key={index}
                     />
                 ))

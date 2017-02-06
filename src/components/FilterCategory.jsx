@@ -1,10 +1,12 @@
 import FilterTag from './FilterTag';
 import React from 'react';
 
-function FilterCategory ( {category, filters, toggleFilter, removeFilter} ) {
+function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFilter} ) {
+    let newFilterInput;
+
     return (
         <div className='row'>
-            <div className={'col s1'}>{category}</div>
+            <div className={'col l1'}>{category}</div>
             {filters.map( (filter, index) => (
                     <FilterTag 
                         filterThis={filter.value}
@@ -15,6 +17,21 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter} ) {
                         key={index}
                     />
             ))};
+            <form onSubmit={(e)=>{
+                e.preventDefault();
+                if ( newFilterInput.value !== '' ) {
+                    addFilter( category, newFilterInput.value);
+                    newFilterInput.value = '';
+                }
+            }}>
+            
+                <input 
+                    className='col l1' 
+                    placeholder='add filter' 
+                    ref={(input) =>{ newFilterInput = input}}
+                />
+            </form>
+
         </div>
     );
 }

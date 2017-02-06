@@ -7,6 +7,7 @@ export const CLICK_REJECT = 'CLICK_REJECT';
 export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const ADD_FILTER = 'ADD_FILTER';
 export const IS_FETCHING_DATA = 'IS_FETCHING_DATA';
 export const DID_FETCH_DATA = 'DID_FETCH_DATA';
 export const ERROR_FETCHING_DATA = 'ERROR_FETCHING_DATA';
@@ -46,6 +47,14 @@ export const removeFilter = (filterId) => {
     return {
         type: REMOVE_FILTER,
         filterId: filterId
+    };
+}
+
+export const addFilter = (category, value) => {
+    return {
+        type: ADD_FILTER,
+        category: category,
+        value: value
     };
 }
 

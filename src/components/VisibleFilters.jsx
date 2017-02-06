@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Filters from './Filters';
-import {toggleFilter,removeFilter} from './actions';
+import {toggleFilter,removeFilter, addFilter} from './actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         removeFilter: (filterId) => {
             dispatch(removeFilter(filterId))
+        },
+        addFilter: ( category, value ) => {
+            dispatch(addFilter(category, value))
         },
     }
 };

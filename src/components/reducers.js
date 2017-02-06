@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {UNDER_REVIEW, ACCEPTED, REJECTED} from './status';
 // action types
-import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA, ERROR_FETCHING_DATA, UNDO} from './actions';
+import {CLICK_ACCEPT, CLICK_REJECT, UPDATE_SEARCH_FILTER, TOGGLE_FILTER, REMOVE_FILTER, ADD_FILTER, IS_FETCHING_DATA, DID_FETCH_DATA, ERROR_FETCHING_DATA, UNDO} from './actions';
 
 function hackersReducer (hackers = [], action) {
     // Fresh data, override old data. Can be called at initial state too
@@ -85,6 +85,14 @@ function filtersReducer ( filters = [], action ) {
             else
                 return result.concat(currFilter);
         }, []);
+    }
+    else if ( action.type === ADD_FILTER ) {
+        return filters.concat( {
+            value: action.value,
+            type: action.category,
+            selected: true,
+            id: Date.now()
+        });
     }
     else
         return filters;

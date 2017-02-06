@@ -2,6 +2,23 @@ import { connect } from 'react-redux';
 import HackerList from './HackerList';
 import {accept, reject} from './actions';
 
+function searchInArrayOfObjects ( searchFor, key, inArray ) {
+    // inArray: [ 
+    //         {
+    //             key1: '...',
+    //             key2: '...', ...
+    //         },
+    //         {
+    //             key1: '...'...
+    //         },...
+    //      ]
+    // key: key to the value to search in
+    // e.g. key can be 'key1' or 'key2'
+    return inArray.reduce( (result, curr) => {
+        return result || curr[key].toLowerCase().includes( searchFor.toLowerCase() );
+    }, false);
+}
+
 function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' ) {
     // If no filters, return true
     let hasFilters = filtersByCategories.length !== 0;
@@ -13,16 +30,17 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
     let anyCategoryMatch = (searchForAnyCategoryLowerCase === '' ||
         hacker.name.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
         hacker.email.toLowerCase().includes(searchForAnyCategoryLowerCase) ||
-        hacker.skills.reduce( (result, skill) => {
-            return result || skill.skill.toLowerCase().includes(searchForAnyCategoryLowerCase);
-        }, false) ||
+        searchInArrayOfObjects( searchForAnyCategoryLowerCase, 'skill', hacker['skills'] ) ||
         hacker.company.toLowerCase().includes(searchForAnyCategoryLowerCase) || 
         hacker.status.toLowerCase().includes (searchForAnyCategoryLowerCase)
     );
 
     // Then check each category filters
     let categoryMatch = !hasFilters || filtersByCategories.reduce( (result, filter) => {
-        return result || hacker[filter.type].toLowerCase().includes(filter.value.toLowerCase());
+        return result || (
+            (filter.type === 'skills')? 
+            searchInArrayOfObjects( filter.value.toLowerCase(), 'skill', hacker[filter.type] ) : 
+            hacker[filter.type].toLowerCase().includes(filter.value.toLowerCase()));
     }, false);
 
     return anyCategoryMatch && categoryMatch;
