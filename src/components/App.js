@@ -53,7 +53,6 @@ class App extends Component {
 
     componentDidMount() {
         console.log('Heyo! Welcome! Please be patient, I was just fetching data :)');
-        console.log('For performance (this is just a quick prototype...), undo is limited to only a few snapshots for now');
         this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
         // Add default filters
         this.getDefaultStatusFiltersAddActions().map( (addFilterAction) => {
@@ -74,7 +73,7 @@ class App extends Component {
                 </header>
                 <StickyContainer>
                     <Sticky>
-                        <header>
+                        <header style={{'backgroundColor': 'grey'}}>
                             <SearchBar />
                             <VisibleFilters />
                             <Undo />
