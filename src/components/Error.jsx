@@ -8,10 +8,15 @@ const mapStateToProps = (state) => {
 };
 
 const error = ( {error} ) => (
-    <div>{error.message || error || ''}</div>
+    <div>{error? (error.message || error || '') : ''}</div>
 );
 
 const Error = connect ( mapStateToProps, undefined) (error);
 
 export default Error;
 
+
+
+
+// WEBPACK FOOTER //
+// ./src/components/Error.jsx

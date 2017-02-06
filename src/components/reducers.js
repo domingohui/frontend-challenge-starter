@@ -119,9 +119,8 @@ function errorReducer ( state, action ) {
 
 function HackerApp (state = {}, action ) {
     if ( action.type === UNDO  ) {
-        console.log('undo hit');
-        if ( state.previousStates.length > 0 ) {
-            console.log("popping state");
+        if ( state.previousStates.length > 1 ) {
+            console.log(state.previousStates);
             return state.previousStates.pop();
         }
         else 
@@ -133,7 +132,7 @@ function HackerApp (state = {}, action ) {
     let filters = filtersReducer ( state.filters, action );
     let loading = loadingReducer ( state.loading, action );
     let error = errorReducer ( state.error, action );
-    let previousStates = (state.previousStates || []).concat( state );
+    let previousStates = ((typeof state.previousStates === 'undefined')? [state] : state.previousStates).concat( state );
 
     return { hackers, searchFilter, filters, loading, error, previousStates };
 }
