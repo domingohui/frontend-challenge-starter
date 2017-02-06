@@ -5,7 +5,7 @@ import { Button } from 'react-materialize';
 
 const mapStateToProps = ( state ) => {
     return {
-        hasPreviousStates: state.previousStates && state.previousStates.length > 1
+        hasPreviousStates: state.previousStates && state.previousStates.length > 3
     };
 }
 
@@ -25,6 +25,22 @@ const Undo = connect ( mapStateToProps, mapDispatchToProps ) ( undoComponent );
 
 export default Undo;
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/Undo.jsx
+
+
+// WEBPACK FOOTER //
+// ./src/components/Undo.jsx
+
+
+// WEBPACK FOOTER //
+// ./src/components/Undo.jsx
+
+
+// WEBPACK FOOTER //
+// ./src/components/Undo.jsx
 
 
 // WEBPACK FOOTER //

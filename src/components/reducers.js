@@ -119,8 +119,7 @@ function errorReducer ( state, action ) {
 
 function HackerApp (state = {}, action ) {
     if ( action.type === UNDO  ) {
-        if ( state.previousStates.length > 1 ) {
-            console.log(state.previousStates);
+        if ( state.previousStates.length > 3 ) {
             return state.previousStates.pop();
         }
         else 
@@ -138,3 +137,8 @@ function HackerApp (state = {}, action ) {
 }
 
 export default HackerApp;
+
+
+
+// WEBPACK FOOTER //
+// ./src/components/reducers.js
