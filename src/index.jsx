@@ -15,10 +15,8 @@ let store = createStore ( HackerApp,
 );
 
 ReactDOM.render(
-    <div className='container'>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </div>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

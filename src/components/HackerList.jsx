@@ -6,6 +6,12 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
     <table className='bordered'>
         <tbody>
             <tr>
+           </tr>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Skills (darker=stronger)</th>
+                <th></th>
                 <th>
                     { 
                         ((hackers.length === totalCountHackersUnfiltered)? 
@@ -13,12 +19,6 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
                             + ' selected'
                     }
                 </th>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <th>Name</th>
-                <th>Skills (darker=stronger)</th>
-                <th></th>
                 <th></th>
             </tr>
             {hackers.map ( (hacker, index) => 
