@@ -13,6 +13,7 @@ class Search extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.onChangeUpdateSearchText = props.onKeyPress.bind(this);
         this.milliSecSinceLastChange = 0;
+        this.lastUpdatedText ='';
         this.CHECK_UPDATE_INTERVAL = 200;
     }
 
@@ -27,8 +28,9 @@ class Search extends React.Component {
 
     updateTimer () {
         this.milliSecSinceLastChange += this.CHECK_UPDATE_INTERVAL;
-        if ( this.milliSecSinceLastChange >= 400 ) {
+        if ( this.milliSecSinceLastChange >= 400 && this.lastUpdatedText !== this.state.value) {
             this.onChangeUpdateSearchText(this.state.value);
+            this.lastUpdatedText = this.state.value;
         }
     }
 
