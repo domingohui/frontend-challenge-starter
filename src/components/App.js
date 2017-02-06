@@ -51,6 +51,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log('Heyo! Welcome! Please be patient, I was just fetching data :)');
         this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
         // Add default filters
         this.getDefaultStatusFiltersAddActions().map( (addFilterAction) => {

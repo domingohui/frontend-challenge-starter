@@ -14,7 +14,7 @@ function Filters ( {available, toggleFilter, removeFilter, addFilter} ) {
     }, {});
 
     // Make sure filters categories are always displayed
-    let mandatoryCategories = [ 'company', 'name', 'skills', 'status' ];
+    let mandatoryCategories = [ 'company', 'skills', 'status' ];
     mandatoryCategories.map( (category) => {
         if ( !filtersByCategory[category] )
             filtersByCategory[category] = [];
