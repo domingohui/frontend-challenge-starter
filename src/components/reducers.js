@@ -91,7 +91,7 @@ function filtersReducer ( filters = [], action ) {
             value: action.value,
             type: action.category,
             selected: true,
-            id: Date.now()
+            id: Date.now() + Math.floor(Math.random()*1000)
         });
     }
     else
@@ -126,6 +126,7 @@ function errorReducer ( state, action ) {
 }
 
 function HackerApp (state = {}, action ) {
+    // Integrate with combineReducers in the future?
     if ( action.type === UNDO  ) {
         if ( state.previousStates.length > 3 ) {
             return state.previousStates.pop();
