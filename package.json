@@ -29,7 +29,7 @@
     "react-dom": "^15.4.2"
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack --watch --display-error-details",
+    "build": "./node_modules/.bin/webpack",
     "build-debug": "./node_modules/.bin/webpack --watch --devtool source-map --display-error-details",
     "start": "FLASK_APP=server.py flask run"
   }
