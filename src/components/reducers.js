@@ -15,8 +15,7 @@ function hackersReducer (hackers = [], action) {
     }
 
     // Initial state
-    if ( !hackers ) {
-        console.log("returning initial state: hackers");
+    if ( typeof hackers === 'undefined' ) {
         return [];
     }
 

@@ -87,6 +87,23 @@ const errorFetchingData = (error) => {
 
 export function fetchHackers ( url ) {
     // Return dispatch block once
+
+    function getSkillsAddFilterActions (hackers) {
+        // Iterate each hacker
+        let allHackersSkills = hackers.reduce( (allSkills, hacker) => {
+            // Iterate each hacker's skills
+            let skills = hacker.skills.map( (skill) => {
+                return skill.skill;
+            });
+            return allSkills.add( ...skills );
+        }, new Set());
+        let allAddActions = [];
+        allHackersSkills.forEach( skill => {
+            allAddActions.push(addFilter( 'skills', skill ));
+        });
+        return allAddActions;
+    }
+
     return (dispatch) => {
         dispatch(startFetchingData);
 
@@ -102,6 +119,10 @@ export function fetchHackers ( url ) {
                     else {
                         // good status
                         dispatch(didFinishFetchingData(hackers))
+                        // Also add skill filters based on all hackers' skills
+                        getSkillsAddFilterActions(hackers).map( (addSkillFilterAction ) => {
+                            dispatch( addSkillFilterAction );
+                        });
                     }
                 },
                 error => {
