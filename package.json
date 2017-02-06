@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "babel-loader": "^6.2.10",
     "css-loader": "^0.26.1",
     "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^2.0.0-beta",
