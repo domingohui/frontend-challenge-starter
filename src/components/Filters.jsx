@@ -13,6 +13,13 @@ function Filters ( {available, toggleFilter, removeFilter} ) {
         );
     }, {});
 
+    // Make sure filters categories are always displayed
+    let mandatoryCategories = [ 'company', 'name', 'skills', 'status' ];
+    mandatoryCategories.map( (category) => {
+        if ( !filtersByCategory[category] )
+            filtersByCategory[category] = [];
+    });
+
     return (
         <div >
             {
