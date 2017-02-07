@@ -21,7 +21,7 @@ function searchInArrayOfObjects ( searchFor, key, inArray ) {
 
 function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' ) {
     // If no filters, return true
-    let hasFilters = filtersByCategories.length !== 0;
+    let hasFilters = Object.keys(filtersByCategories).length !== 0;
     if ( !hasFilters && searchForAnyCategory === '' )
         return true;
 
@@ -36,25 +36,33 @@ function searchWrapper ( hacker, filtersByCategories, searchForAnyCategory = '' 
     );
 
     // Then check each category filters
-    let categoryMatch = !hasFilters || filtersByCategories.reduce( (result, filter) => {
-        return result || (
-            (filter.type === 'skills')? 
-            searchInArrayOfObjects( filter.value.toLowerCase(), 'skill', hacker[filter.type] ) : 
-            hacker[filter.type].toLowerCase().includes(filter.value.toLowerCase()));
-    }, false);
+    let categoryMatch = !hasFilters || Object.keys(filtersByCategories).reduce( (allCategories, category) => {
+        // Use OR within a category, AND between categories
+        return allCategories && filtersByCategories[category].reduce( (categoryResult, filter) => {
+            return categoryResult || ( (filter.type === 'skills')? 
+                searchInArrayOfObjects( filter.value.toLowerCase(), 'skill', hacker[filter.type] ) : 
+                hacker[filter.type].toLowerCase().includes(filter.value.toLowerCase()) )
+        }, false);
+    }, true);
 
     return anyCategoryMatch && categoryMatch;
 }
 
 const mapStateToProps = (state) => {
     // choose selected filteres
-    let selectedFilters = state.filters.filter( (filter) => {
-        return filter.selected;
-    });
+    let selectedFiltersByCategories = state.filters.reduce( (byCategories, filter) => {
+        if ( filter.selected ) {
+            return Object.assign( {}, byCategories, { 
+                [filter.type]: (byCategories[filter.type] || []).concat(filter) 
+            });
+        }
+        else
+            return byCategories;
+    }, {});
 
     return {
         hackers: state.hackers.filter( (hacker) => {
-            return searchWrapper(hacker, selectedFilters, state.searchFilter);
+            return searchWrapper(hacker, selectedFiltersByCategories, state.searchFilter);
         }),
         loading: state.loading,
         totalCountHackersUnfiltered: state.hackers.length,

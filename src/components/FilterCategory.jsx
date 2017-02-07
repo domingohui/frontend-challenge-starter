@@ -6,18 +6,18 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
 
     return (
         <div>
-            <div>{category}</div>
+            <div style={{fontSize:20}}>{category}</div>
             {filters.map( (filter, index) => (
-                <div>
+                <div key={'f'+index}>
                     <FilterTag 
                         filterThis={filter.value}
                         filterId={filter.id}
                         toggleThisFilter={toggleFilter}
                         removeThisFilter={removeFilter}
                         className={(filter.selected? 'blue' : 'grey')}
-                        key={index}
+                        key={filter.id}
                     />
-                    { (index+1) % 3 === 0 && <br key={index+1000}></br> }
+                    { (index+1) % 3 === 0 && <br></br> }
                 </div>
             ))}
             <form 

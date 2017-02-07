@@ -26,7 +26,7 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
                     details={hacker} 
                     onClickAccept={onClickAccept}
                     onClickReject={onClickReject}
-                    key={index}
+                    key={'h'+index}
                 />
             )}
             <tr>
