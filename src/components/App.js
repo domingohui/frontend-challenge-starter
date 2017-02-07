@@ -9,6 +9,7 @@ import Undo from './Undo';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
 import {fetchHackers, addFilter} from './actions';
 import {connect} from 'react-redux';
+var Sidebar = require('react-sidebar').default;
 
 /*
  * state: {
@@ -64,21 +65,31 @@ class App extends Component {
     render() {
         return (
             <div>
-                <header className='header'>
-                    <div className='logo'>
-                        <img src={logoSvg}/>
+                <Sidebar 
+                    sidebar={
+                        <div style=
+                            {{
+                                    width: 256,
+                                    height: '100%',
+                            }}>
+                            <header className='header'>
+                                <div className='logo'>
+                                    <img src={logoSvg}/>
+                                </div>
+                                <h1>Hack the North Frontend Challenge</h1>
+                            </header>
+                            <SearchBar />
+                            <VisibleFilters />
+                            <Undo />
+                            <Error />
+                        </div>
+                    }
+                    docked={true}
+                >
+                    <div>
+                        <VisibleHackerList />
                     </div>
-                    <h1>Hack the North Frontend Challenge</h1>
-                </header>
-                <header style={{'backgroundColor': 'grey'}}>
-                    <SearchBar />
-                    <VisibleFilters />
-                    <Undo />
-                    <Error />
-                </header>
-                <div>
-                    <VisibleHackerList />
-                </div>
+                </Sidebar>
             </div>
         );
     }

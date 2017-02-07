@@ -5,18 +5,18 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
     let newFilterInput;
 
     return (
-        <div className='row'>
-            <div className={'col l1'}>{category}</div>
+        <div>
+            <div>{category}</div>
             {filters.map( (filter, index) => (
                     <FilterTag 
                         filterThis={filter.value}
                         filterId={filter.id}
                         toggleThisFilter={toggleFilter}
                         removeThisFilter={removeFilter}
-                        className={'col l2 ' + (filter.selected? 'blue' : 'grey')}
+                        className={(filter.selected? 'blue' : 'grey')}
                         key={index}
                     />
-            ))};
+            ))}
             <form 
                 onSubmit={ e =>{
                     e.preventDefault();
@@ -25,13 +25,11 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
                         newFilterInput.value = '';
                     }
                 }}
-                style={{display: 'inline'}} >
+            >
 
-                <input 
-                    className='col l1' 
+                <input  
                     placeholder='add filter' 
                     ref={(input) =>{ newFilterInput = input}}
-                    style={{display: 'inline'}}
                 />
             </form>
 
