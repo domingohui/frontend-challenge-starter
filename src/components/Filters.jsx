@@ -1,6 +1,8 @@
 import FilterTag from './FilterTag';
 import FilterCategory from './FilterCategory';
 import React from 'react';
+import { toggleFilter } from './actions';
+import { Button } from 'react-materialize';
 
 function Filters ( {available, toggleFilter, removeFilter, addFilter} ) {
     let filtersByCategory = available.reduce( (byCategory, filter) => {
@@ -22,6 +24,7 @@ function Filters ( {available, toggleFilter, removeFilter, addFilter} ) {
 
     return (
         <div >
+            <Button onClick={()=>toggleFilter(-1)}>Disable all</Button>
             {
                 // For each category, render a FilterCategory
                 Object.keys(filtersByCategory).map((category, index) => (

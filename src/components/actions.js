@@ -39,7 +39,7 @@ export const updateSearchFilter = (searchFor) => {
 export const toggleFilter = (filterId) => {
     return {
         type: TOGGLE_FILTER,
-        filterId: filterId,
+        filterId: filterId, // -1 means disabling all filters
     };
 };
 

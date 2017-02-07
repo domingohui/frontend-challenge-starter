@@ -68,11 +68,13 @@ function filtersReducer ( filters = [], action ) {
     }
 
     if ( action.type === TOGGLE_FILTER ) {
-        // duplicate the filters
+        let disableAllFilters = (action.filterId === -1);
+        
+        // duplicate the filters while updating their status
         return filters.map( (currFilter) => {
-            if ( currFilter.id === action.filterId ) {
+            if ( disableAllFilters || currFilter.id === action.filterId ) {
                 return Object.assign({}, currFilter, {
-                    selected: !currFilter.selected
+                    selected: (disableAllFilters)? false : !currFilter.selected
                 });
             }
             return currFilter;
@@ -117,7 +119,7 @@ function errorReducer ( state, action ) {
     // initial state
     if ( typeof state === 'undefined' )
         return '';
-    
+
     // has error
     if ( action.type === ERROR_FETCHING_DATA ) {
         return action.error;
