@@ -5,7 +5,13 @@ const FilterTag = ( {filterThis, filterId, toggleThisFilter, removeThisFilter, c
     <div 
         className={'chip ' + className}
         onClick={()=>toggleThisFilter(filterId)}
-        style={{ color: 'white', fontSize: '14px', backgroundColor: backgroundColor, display: 'block', width: 150 }}
+        style={{ 
+            color: 'white', fontSize: '14px', 
+            backgroundColor: backgroundColor, 
+            display: 'block', 
+            width: 150,
+            marginLeft: 10,
+        }}
     >
         { removeThisFilter &&
                 <input type='button' onClick={()=>removeThisFilter(filterId)} style={{'marginRight': '5px', color: 'red',}} value='x' />

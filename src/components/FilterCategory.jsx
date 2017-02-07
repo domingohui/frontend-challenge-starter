@@ -8,6 +8,7 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
         <div>
             <div>{category}</div>
             {filters.map( (filter, index) => (
+                <div>
                     <FilterTag 
                         filterThis={filter.value}
                         filterId={filter.id}
@@ -16,6 +17,8 @@ function FilterCategory ( {category, filters, toggleFilter, removeFilter, addFil
                         className={(filter.selected? 'blue' : 'grey')}
                         key={index}
                     />
+                    { (index+1) % 3 === 0 && <br key={index+1000}></br> }
+                </div>
             ))}
             <form 
                 onSubmit={ e =>{

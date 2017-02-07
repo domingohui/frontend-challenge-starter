@@ -69,7 +69,7 @@ class App extends Component {
                     sidebar={
                         <div style=
                             {{
-                                    width: 256,
+                                    width: 250,
                                     height: '100%',
                             }}>
                             <header className='header'>
