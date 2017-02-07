@@ -128,7 +128,7 @@ function errorReducer ( state, action ) {
 function HackerApp (state = {}, action ) {
     // Integrate with combineReducers in the future?
     if ( action.type === UNDO  ) {
-        if ( state.previousStates.length > 3 ) {
+        if ( state.previousStates.length > 0 ) {
             return state.previousStates.pop();
         }
         else 

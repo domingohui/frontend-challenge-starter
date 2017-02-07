@@ -4,8 +4,12 @@ import { undo } from './actions';
 import { Button } from 'react-materialize';
 
 const mapStateToProps = ( state ) => {
+    let numOfPreviousStates = (state.previousStates)? state.previousStates.length : 0;
     return {
-        hasPreviousStates: state.previousStates && state.previousStates.length > 3
+        // If the last state has hackers
+        hasPreviousStates: numOfPreviousStates > 0 
+        && state.previousStates[numOfPreviousStates-1].hackers 
+        && state.previousStates[numOfPreviousStates-1].hackers.length > 0
     };
 }
 
@@ -24,36 +28,3 @@ const undoComponent = ( { hasPreviousStates, onClickUndo } ) => (
 const Undo = connect ( mapStateToProps, mapDispatchToProps ) ( undoComponent );
 
 export default Undo;
-
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx
-
-
-// WEBPACK FOOTER //
-// ./src/components/Undo.jsx

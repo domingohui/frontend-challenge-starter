@@ -9,7 +9,6 @@ import Undo from './Undo';
 require ('../../node_modules/materialize-css/sass/materialize.scss');
 import {fetchHackers, addFilter} from './actions';
 import {connect} from 'react-redux';
-import { StickyContainer, Sticky } from 'react-sticky';
 
 /*
  * state: {
@@ -71,19 +70,15 @@ class App extends Component {
                     </div>
                     <h1>Hack the North Frontend Challenge</h1>
                 </header>
-                <StickyContainer>
-                    <Sticky>
-                        <header style={{'backgroundColor': 'grey'}}>
-                            <SearchBar />
-                            <VisibleFilters />
-                            <Undo />
-                            <Error />
-                        </header>
-                    </Sticky>
-                    <div>
-                        <VisibleHackerList />
-                    </div>
-                </StickyContainer>
+                <header style={{'backgroundColor': 'grey'}}>
+                    <SearchBar />
+                    <VisibleFilters />
+                    <Undo />
+                    <Error />
+                </header>
+                <div>
+                    <VisibleHackerList />
+                </div>
             </div>
         );
     }
