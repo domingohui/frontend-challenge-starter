@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import HackerList from './HackerList';
 import {accept, reject} from './actions';
+import { DataListWrapper } from './Helpers';
 
 function searchInArrayOfObjects ( searchFor, key, inArray ) {
     // inArray: [ 
@@ -60,10 +61,15 @@ const mapStateToProps = (state) => {
             return byCategories;
     }, {});
 
+    // Get indices of filtered hackers
+    let filteredHackersIndices = [];
+    state.hackers.map( (hacker,index ) => {
+        if ( searchWrapper(hacker, selectedFiltersByCategories, state.searchFilter) )
+            filteredHackersIndices.push(index);
+    });
+
     return {
-        hackers: state.hackers.filter( (hacker) => {
-            return searchWrapper(hacker, selectedFiltersByCategories, state.searchFilter);
-        }),
+        hackers: new DataListWrapper ( filteredHackersIndices, state.hackers ),
         loading: state.loading,
         totalCountHackersUnfiltered: state.hackers.length,
     }

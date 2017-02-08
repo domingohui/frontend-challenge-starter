@@ -14,6 +14,7 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
                 <th></th>
                 <th>
                     { 
+                        // counters
                         ((hackers.length === totalCountHackersUnfiltered)? 
                             'All' : hackers.length + ' of ' + totalCountHackersUnfiltered) 
                             + ' selected'
