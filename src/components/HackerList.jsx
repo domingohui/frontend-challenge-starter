@@ -9,6 +9,7 @@ const HackerList = ( { hackers, loading, totalCountHackersUnfiltered, onClickAcc
            </tr>
             <tr>
                 <th>Status</th>
+                <th></th>
                 <th>Name</th>
                 <th>Skills (darker=stronger)</th>
                 <th></th>

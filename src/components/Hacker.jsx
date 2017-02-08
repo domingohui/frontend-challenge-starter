@@ -25,25 +25,32 @@ const Hacker = ( {details, onClickAccept, onClickReject} ) => (
         {details.status === REJECTED && <td><RejectedStatus /></td>}
         {details.status === UNDER_REVIEW && <td><UnderReviewStatus /></td>}
 
-        <td>{details.name}</td>
-            <td>
-        {
-            // Skill tags
-            details.skills.map( (skill, index) => {
-                return ( 
-                    <FilterTag 
-                        filterThis = {skill.skill}
-                        filterId={0}
-                        toggleThisFilter={()=>{}}
-                        removeThisFilter={undefined}
-                        selected={true}
-                        backgroundColor={'rgb(66,' + parseInt(225-skill.rating*23) + ',' + parseInt(155-skill.rating*15) + ')'}
-                        key={index}
-                    />
-                )
-            })
-        }
+        <td>
+            <img
+                style={{width: 50, height:50}}
+                src={details.picture} />
         </td>
+
+        <td>{details.name}</td>
+        <td>
+            {
+                // Skill tags
+                details.skills.map( (skill, index) => {
+                    return ( 
+                        <FilterTag 
+                            filterThis = {skill.skill}
+                            filterId={0}
+                            toggleThisFilter={()=>{}}
+                            removeThisFilter={undefined}
+                            selected={true}
+                            backgroundColor={'rgb(66,' + parseInt(225-skill.rating*23) + ',' + parseInt(155-skill.rating*15) + ')'}
+                            key={index}
+                        />
+                    )
+                })
+            }
+        </td>
+        <td><a href={'mailto:'+details.email}>Email</a></td>
         <td><Button className={(details.status===ACCEPTED)? 'grey' : ''} waves='light' onClick={()=>onClickAccept(details.id)}>Accept</Button></td>
         <td><Button className={(details.status===REJECTED)? 'grey' : 'red'} waves='light' onClick={()=>onClickReject(details.id)}>Reject</Button></td>
     </tr>
