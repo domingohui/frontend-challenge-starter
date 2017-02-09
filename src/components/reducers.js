@@ -9,7 +9,7 @@ function hackersReducer (hackers = [], action) {
         return action.data.map( (hacker, index) => {
             // assign id to each applicant
             return Object.assign( {}, hacker, {
-                id: index
+                id: 'h'+index
             });
         });
     }

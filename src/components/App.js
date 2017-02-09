@@ -53,6 +53,7 @@ class App extends Component {
 
     componentDidMount() {
         console.log('Heyo! Welcome! Please be patient, I was just fetching data :)');
+        // Async fetch JSON
         this.props.dispatch(fetchHackers('https://hackthenorth.com/fe-users.json'));
         // Add default filters
         this.getDefaultStatusFiltersAddActions().map( (addFilterAction) => {
@@ -86,9 +87,7 @@ class App extends Component {
                     }
                     docked={true}
                 >
-                    <div>
-                        <VisibleHackerList />
-                    </div>
+                    <VisibleHackerList />
                 </Sidebar>
             </div>
         );
