@@ -2703,9 +2703,9 @@ react-sidebar@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-sidebar/-/react-sidebar-2.2.1.tgz#a8faf6a3c62ddc562c70680d5d016fe9741b585f"
 
-react-table@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/react-table/-/react-table-5.0.2.tgz#889b73a170a57978e40a8cdbd1d89955b8859fd0"
+react-table@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-5.0.3.tgz#9536a0974bad9abe01246e4113ad57bea117475d"
   dependencies:
     classnames "^2.2.5"
 
